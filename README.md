@@ -1,9 +1,9 @@
 # Tuling robot for Laravel 5
 
-##About
+## About
 Tuling robot是对图灵机器人的封装
 
-##Installation
+## Installation
 在你的`composer.json`中引用 `wjh/tuling`，然后更新依赖关系：
 ```sh
 $ composer require wjh/tuling
@@ -14,13 +14,13 @@ $ composer require wjh/tuling
 Wjh\Tuling\ServiceProvider::class,
 ```
 
-##使用方法
+## 使用方法
 ```php
 $handle = new Wjh\Tuling\Handle();
 $handle->handle();
 ```
 
-##配置文件
+## 配置文件
 默认的配置文件在config/tuling.php，复制该文件到你的文件夹中并修改，发布配置文件通过以下命令：
 ```php
 php artisan vendor:publish --provider="Wjh\Tuling\ServiceProvider"
