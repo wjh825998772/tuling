@@ -1,7 +1,7 @@
 {
     "name": "wjh/tuling",
     "description": "laravel 图灵机器人",
-    "type": "library",
+    "keywords": ["laravel", "tuling"],
     "license": "MIT",
     "authors": [
         {
