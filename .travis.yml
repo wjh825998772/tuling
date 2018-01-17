@@ -14,6 +14,7 @@ before-install:
 
 install:
   - composer install --prefer-dist --optimize-autoloader --quiet
+  - composer update
 
 script:
   - vendor/bin/phpunit
