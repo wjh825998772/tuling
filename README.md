@@ -1,6 +1,6 @@
 # Tuling robot for Laravel 5
 
-![travis-ci](https://travis-ci.org/wjh825998772/tuling.svg?branch=master)
+[![Build Status][ico-travis]][link-travis]
 
 ## 关于
 Tuling robot是对图灵机器人的封装
@@ -35,3 +35,7 @@ return [
     'app_key' => env('tuling_app_key'),
 ];
 ```
+
+
+[ico-travis]: https://travis-ci.org/wjh825998772/tuling.svg?branch=dev
+[link-travis]: https://travis-ci.org/wjh825998772/tuling
