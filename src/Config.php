@@ -13,5 +13,10 @@ class Config
         return 'config';
     }
 
+    public function set()
+    {
+        return 'set config';
+    }
+
 
 }
