@@ -9,4 +9,4 @@ install:
   - travis_retry composer install --dev --prefer-dist --optimize-autoloader --quiet
 
 script:
-  - vendor/phpunit/phpunit/phpunit
+  - vendor/bin/phpunit
