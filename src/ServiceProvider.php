@@ -15,7 +15,7 @@ class ServiceProvider extends BaseServiceProvider
     {
         $this->app->singleton('tuling', function($app) {
             $config = $app['config']->get('tuling');
-            return new Handle($config);
+            return new Tuling($config);
         });
     }
 

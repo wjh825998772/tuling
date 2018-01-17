@@ -9,7 +9,7 @@ use Curl\Curl;
  * Class Handle
  * @package Wjh\Tuling
  */
-class Handle
+class Tuling
 {
     /**
      * Handle constructor.

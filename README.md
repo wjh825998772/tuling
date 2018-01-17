@@ -1,5 +1,7 @@
 # Tuling robot for Laravel 5
 
+[![Build Status][ico-travis]][link-travis]
+
 ## 关于
 Tuling robot是对图灵机器人的封装
 
