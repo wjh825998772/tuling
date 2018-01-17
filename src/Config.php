@@ -10,7 +10,7 @@ class Config
 
     public function get()
     {
-        return 111;
+        return 'config';
     }
 
 
