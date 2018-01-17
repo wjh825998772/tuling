@@ -7,7 +7,7 @@ php:
 sudo: false
 
 install:
-  - composer install --prefer-dist --no-dev --optimize-autoloader --quiet
+  - composer install --prefer-dist --optimize-autoloader --quiet
 
 script:
   phpunit -c phpunit.xml
