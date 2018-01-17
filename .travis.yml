@@ -6,10 +6,8 @@ php:
 
 sudo: false
 
-install: true
-
-before-script:
-  - composer install
+install:
+  - composer install --prefer-dist --no-dev --optimize-autoloader --quiet
 
 script:
-  vendor/bin/phpunit -c phpunit.xml
+  phpunit -c phpunit.xml
