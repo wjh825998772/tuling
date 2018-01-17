@@ -9,12 +9,9 @@ cache:
   directories:
     - $HOME/.composer/cache
 
-before-install:
-  - composer self-update
 
 install:
-  - composer install --prefer-dist --optimize-autoloader --quiet
-  - composer update
+  - travis_retry composer install --prefer-dist --optimize-autoloader --quiet
 
 script:
   - vendor/bin/phpunit
