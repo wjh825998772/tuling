@@ -25,11 +25,6 @@
             "Wjh\\Tuling\\": "src/"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Wjh\\Tuling\\Tests\\": "tests/"
-        }
-    },
     "extra": {
         "branch-alias": {
             "dev-master": "0.1.x-dev"

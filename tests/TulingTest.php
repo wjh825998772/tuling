@@ -1,9 +1,10 @@
 <?php
-namespace Wjh\Tuling\Tests;
 
 
-class TulingTest extends \PHPunit_Framework_TestCase
+class TulingTest extends PHPunit_Framework_TestCase
 {
+
+
 
     public function testHandle()
     {
