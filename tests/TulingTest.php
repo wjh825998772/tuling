@@ -1,5 +1,7 @@
 <?php
+namespace Wjh\Tuling\Tests;
 
+use PHPUnit_Framework_TestCase;
 
 class TulingTest extends PHPunit_Framework_TestCase
 {

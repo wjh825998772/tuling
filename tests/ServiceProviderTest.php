@@ -1,4 +1,7 @@
 <?php
+namespace Wjh\Tuling\Tests;
+
+use PHPUnit_Framework_TestCase;
 
 class ServiceProviderTest extends PHPUnit_Framework_TestCase
 {
