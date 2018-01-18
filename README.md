@@ -37,5 +37,5 @@ return [
 ```
 
 
-[ico-travis]: https://travis-ci.org/wjh825998772/tuling.svg?branch=dev
-[link-travis]: https://travis-ci.org/wjh825998772/tuling
+[ico-travis]: https://travis-ci.org/wjhtime/tuling.svg?branch=dev
+[link-travis]: https://travis-ci.org/wjhtime/tuling
