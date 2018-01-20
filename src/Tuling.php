@@ -11,31 +11,41 @@ use Curl\Curl;
  */
 class Tuling
 {
+
+    /**
+     * @var Curl
+     */
+    protected $curl;
+
     /**
      * Handle constructor.
      * @param $config
      */
-    public function __construct($config)
+    public function __construct($appUrl, $appKey, Curl $curl)
     {
-        $this->appUrl = $config['app_url'];
-        $this->appKey = $config['app_key'];
+        $this->appUrl = $appUrl;
+        $this->appKey = $appKey;
+        $this->curl = $curl;
     }
 
     /**
      * 图灵机器人核心处理
      *
      * @param $message
-     * @return mixed
      */
     public function handle($message)
     {
-        $curl = new Curl();
         $data = [
             'key' => $this->appKey,
             'info' => $message,
         ];
-        $curl->post($this->appUrl, $data);
-        return $curl->response->text;
+        $this->curl->post($this->appUrl, $data);
+        if ($this->curl->response->code != 100000)
+        {
+            return '接口调用失败';
+        }
+        return $this->curl->response->text;
     }
+
 
 }

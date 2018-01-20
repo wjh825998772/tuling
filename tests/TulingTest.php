@@ -2,40 +2,71 @@
 namespace Wjh\Tuling\Tests;
 
 use PHPUnit_Framework_TestCase;
+use Wjh\Tuling\Tuling;
+use Mockery as m;
 
 class TulingTest extends PHPunit_Framework_TestCase
 {
 
+    /**
+     * @var \MockeryTest_Interface
+     */
+    protected $mockCurl;
 
-
-    public function testStub()
+    public function setUp()
     {
-        $stub = $this->getMockBuilder(Stub::class)
-            ->setMethods(['show'])
-            ->getMock();
-        $stub->method('show')
-            ->willReturn('show some');
-
-        $obj = new Stub();
-        $res = $obj->show('some');
-        $this->assertEquals($res, $stub->show('some'));
+        $this->mockCurl = m::mock('overload:Curl\Curl')->makePartial();
     }
-    
 
-    public function testHandle()
+    public function tearDown()
     {
+        m::close();
+    }
+
+    /**
+     * 测试处理消息成功
+     */
+    public function testTulingCanHandleMessage()
+    {
+        $appUrl = 'http://www.testurl.com';
+        $appKey = 'testkey';
         $message = '你好';
+        $requestData = [
+            'key' => $appKey,
+            'info' => $message,
+        ];
 
-        $this->assertEquals(1, 1);
+        $this->mockCurl->shouldReceive('post')
+            ->once()
+            ->with($appUrl, $requestData)
+            ->set('response', (object)['code'=>100000, 'text'=>'good']);
+        $tuling = new Tuling($appUrl, $appKey, $this->mockCurl);
+        $message = $tuling->handle($message);
+        $this->assertEquals('good', $message);
     }
 
-}
-
-class Stub
-{
-    public function show($str)
+    /**
+     * 测试处理消息失败
+     */
+    public function testTulingCanNotHandleMessage()
     {
-        return 'show '. $str;
+        $appUrl = 'http://www.testurl.com';
+        $appKey = 'testkey';
+        $message = '你好';
+        $requestData = [
+            'key' => $appKey,
+            'info' => $message,
+        ];
+
+        $this->mockCurl->shouldReceive('post')
+            ->once()
+            ->with($appUrl, $requestData)
+            ->set('response', (object)['code'=>0, 'text'=>'good']);
+
+        $tuling = new Tuling($appUrl, $appKey, $this->mockCurl);
+        $result = $tuling->handle($message);
+        $this->assertEquals('接口调用失败', $result);
     }
+
 
 }

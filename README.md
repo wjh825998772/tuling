@@ -18,8 +18,8 @@ Wjh\Tuling\ServiceProvider::class,
 
 ## 使用方法
 ```php
-$handle = new Wjh\Tuling\Handle();
-$handle->handle();
+$tuling = new Wjh\Tuling\Tuling($appUrl, $appKey);
+$tuling->handle();
 ```
 
 ## 配置文件
