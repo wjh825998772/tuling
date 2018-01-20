@@ -15,7 +15,7 @@ class TulingTest extends PHPunit_Framework_TestCase
 
     public function setUp()
     {
-        $this->mockCurl = m::mock('overload:Curl\Curl')->makePartial();
+        $this->mockCurl = m::mock('Curl\Curl')->makePartial();
     }
 
     public function tearDown()
