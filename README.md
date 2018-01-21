@@ -1,6 +1,7 @@
 # Tuling robot for Laravel 5
 
 [![Build Status][ico-travis]][link-travis]
+[![codecov][ico-codecov]][link-codecov]
 
 ## 关于
 Tuling robot是对图灵机器人的封装
@@ -18,7 +19,7 @@ Wjh\Tuling\ServiceProvider::class,
 
 ## 使用方法
 ```php
-$tuling = new Wjh\Tuling\Tuling($appUrl, $appKey);
+$tuling = new Wjh\Tuling\Tuling($appUrl, $appKey, new Curl\Curl());
 $tuling->handle();
 ```
 
@@ -38,4 +39,6 @@ return [
 
 
 [ico-travis]: https://travis-ci.org/wjhtime/tuling.svg?branch=dev
+[ico-codecov]:https://codecov.io/gh/wjhtime/tuling/branch/dev/graph/badge.svg
 [link-travis]: https://travis-ci.org/wjhtime/tuling
+[link-codecov]:https://codecov.io/gh/wjhtime/tuling

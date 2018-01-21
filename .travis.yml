@@ -5,14 +5,14 @@ php:
 
 sudo: false
 
+before_install:
+  - pip install --user codecov
+
 install:
   - travis_retry composer install --dev --prefer-dist --optimize-autoloader --quiet
 
 script:
   - vendor/bin/phpunit --coverage-clover=coverage.xml
-
-before_install:
-  - pip install --user codecov
 
 after_success:
   - codecov
