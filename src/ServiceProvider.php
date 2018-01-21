@@ -1,6 +1,7 @@
 <?php
 namespace Wjh\Tuling;
 
+use Curl\Curl;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider
@@ -15,7 +16,7 @@ class ServiceProvider extends BaseServiceProvider
     {
         $this->app->singleton('tuling', function($app) {
             $config = $app['config']->get('tuling');
-            return new Tuling($config);
+            return new Tuling($config['app_url'], $config['app_key'], new Curl());
         });
     }
 
