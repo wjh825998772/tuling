@@ -4,7 +4,7 @@
 [![codecov][ico-codecov]][link-codecov]
 
 ## 关于
-Tuling robot是对图灵机器人的封装
+Tuling robot是对图灵机器人的封装，提供一种简洁的方式，可以很方便的在你的框架中使用
 
 ## 安装方法
 在你的`composer.json`中引用 `wjh/tuling`，然后更新依赖关系：
