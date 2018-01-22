@@ -3,69 +3,46 @@ namespace Wjh\Tuling\Tests;
 
 use PHPUnit_Framework_TestCase;
 use Wjh\Tuling\Tuling;
-use Mockery as m;
 
 class TulingTest extends PHPunit_Framework_TestCase
 {
-
-    /**
-     * @var \MockeryTest_Interface
-     */
-    protected $mockCurl;
-
-    public function setUp()
-    {
-        $this->mockCurl = m::mock('Curl\Curl')->makePartial();
-    }
-
-    public function tearDown()
-    {
-        m::close();
-    }
 
     /**
      * 测试处理消息成功
      */
     public function testTulingCanHandleMessage()
     {
-        $appUrl = 'http://www.testurl.com';
-        $appKey = 'testkey';
-        $message = '你好';
-        $requestData = [
-            'key' => $appKey,
-            'info' => $message,
-        ];
+        $mockCurl = $this->getMockBuilder('Curl\Curl')
+            ->setMethods(['post'])
+            ->getMock();
 
-        $this->mockCurl->shouldReceive('post')
-            ->once()
-            ->with($appUrl, $requestData)
-            ->set('response', (object)['code'=>100000, 'text'=>'good']);
-        $tuling = new Tuling($appUrl, $appKey, $this->mockCurl);
-        $message = $tuling->handle($message);
-        $this->assertEquals('good', $message);
+        $mockCurl->method('post')
+            ->will($this->returnCallback(function () use ($mockCurl){
+                return $mockCurl->response = (object)['code'=>100000, 'text'=>'success'];
+            }));
+
+        $tuling = new Tuling('http://www.testurl.com', 'testkey', $mockCurl);
+        $message = $tuling->handle('你好');
+        $this->assertEquals('success', $message);
     }
 
     /**
-     * 测试处理消息失败
+     * 测试处理消息不成功，抛出异常
+     * @expectedException \Exception
      */
     public function testTulingCanNotHandleMessage()
     {
-        $appUrl = 'http://www.testurl.com';
-        $appKey = 'testkey';
-        $message = '你好';
-        $requestData = [
-            'key' => $appKey,
-            'info' => $message,
-        ];
+        $mockCurl = $this->getMockBuilder('Curl\Curl')
+            ->setMethods(['post'])
+            ->getMock();
 
-        $this->mockCurl->shouldReceive('post')
-            ->once()
-            ->with($appUrl, $requestData)
-            ->set('response', (object)['code'=>0, 'text'=>'good']);
+        $mockCurl->method('post')
+            ->will($this->returnCallback(function () use ($mockCurl){
+                return $mockCurl->response = (object)['code'=>100001, 'text'=>'error'];
+            }));
 
-        $tuling = new Tuling($appUrl, $appKey, $this->mockCurl);
-        $result = $tuling->handle($message);
-        $this->assertEquals('接口调用失败', $result);
+        $tuling = new Tuling('http://www.testurl.com', 'testkey', $mockCurl);
+        $tuling->handle('你好');
     }
 
 

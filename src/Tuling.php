@@ -42,7 +42,7 @@ class Tuling
         $this->curl->post($this->appUrl, $data);
         if ($this->curl->response->code != 100000)
         {
-            return '接口调用失败';
+            throw new \Exception('接口调用失败');
         }
         return $this->curl->response->text;
     }
